@@ -5,4 +5,4 @@ Deposit;
 Withdraw;
 Check balance;
 See Account Details;
-Exit;
+Exit
