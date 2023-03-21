@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class BankingSystem {
 
+    static int accountscheck=0;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
@@ -15,6 +16,7 @@ public class BankingSystem {
             System.out.println("Option: ");
 
             String choice = scanner.next();
+
             switch (choice) {
                 case "1":
                     scanner.nextLine();
@@ -28,7 +30,7 @@ public class BankingSystem {
                     }
                     System.out.println("Enter your Age(Your age should be above 18 to open a Bank Account):");
                     int age=scanner.nextInt();
-                    if(age<18)
+                    if(age<18 || age>110)
                     {
                         System.out.println("You are not eligible for opening a Bank account.");
                         break;
@@ -36,10 +38,16 @@ public class BankingSystem {
                     System.out.println("Please enter the Initial Deposit:");
                     double deposit = scanner.nextDouble();
                     bank.createAccount(name, deposit, age, phoneNumber);
+                    accountscheck+=1;
                     break;
                 case "2":
                     System.out.println("Please enter your account number:");
                     int accountNumber = scanner.nextInt();
+                    if(accountNumber>accountscheck)
+                    {
+                        System.out.println("Invalid Account Number");
+                        break;
+                    }
                     System.out.println("Please enter the amount to deposit:");
                     double amount = scanner.nextDouble();
                     bank.deposit(accountNumber, amount);
@@ -47,6 +55,11 @@ public class BankingSystem {
                 case "3":
                     System.out.println("Please enter your account number:");
                     accountNumber = scanner.nextInt();
+                    if(accountNumber>accountscheck)
+                    {
+                        System.out.println("Invalid Account Number");
+                        break;
+                    }
                     System.out.println("Please enter the amount to withdraw:");
                     amount = scanner.nextDouble();
                     bank.withdraw(accountNumber, amount);
@@ -54,11 +67,21 @@ public class BankingSystem {
                 case "4":
                     System.out.println("Please enter your account number:");
                     accountNumber = scanner.nextInt();
+                    if(accountNumber>accountscheck)
+                    {
+                        System.out.println("Invalid Account Number");
+                        break;
+                    }
                     System.out.println("Your account balance is: " + bank.checkBalance(accountNumber));
                     break;
                 case "5":
                     System.out.println("Enter account number to see Details");
                     int acc= scanner.nextInt();
+                    if(acc>accountscheck)
+                    {
+                        System.out.println("Invalid Account Number");
+                        break;
+                    }
                     bank.show_accounts(acc);
                     break;
                 case "6":
